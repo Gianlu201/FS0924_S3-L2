@@ -64,7 +64,7 @@ addToTheSecond();
 */
 
 const addParagraph = function () {
-  const myDiv = document.getElementById('addParagraph');
+  const myDiv = document.querySelectorAll('div')[0];
   const newP = document.createElement('p');
   newP.innerText = `Questo paragrafo è stato creato per l'esercizio 6`;
   myDiv.appendChild(newP);
@@ -205,14 +205,12 @@ generateTable();
   Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
 */
 
-const newItem = [
-  {
-    img: 'assets/img/img6.png',
-    productName: 'matita',
-    quantity: 5,
-    price: 2,
-  },
-];
+const newItem = {
+  img: 'assets/img/img6.png',
+  productName: 'matita',
+  quantity: 5,
+  price: 2,
+};
 
 const addRow = function () {
   const myTbody = document.querySelector('#tableArea table tbody');
@@ -256,7 +254,6 @@ function randomColor() {
   for (let i = 0; i < 3; i++) {
     myArray[i] = Math.floor(Math.random() * 255);
   }
-  console.log(myArray);
   return `rgb(${myArray[0]}, ${myArray[1]}, ${myArray[2]})`;
 }
 
@@ -270,4 +267,37 @@ myH2Title.addEventListener('click', function (e) {
   Crea una funzione che elimini le vocali da ogni elemento testuale della pagina (puoi aiutarti con i nuovi metodi degli array di ES6)
 */
 
-const deleteVowels = function () {};
+const deleteVowels = function () {
+  const vocals = ['a', 'e', 'i', 'o', 'u'];
+  const allElements = document.querySelectorAll('body *');
+
+  console.log(allElements);
+
+  allElements.forEach((element) => {
+    if (element.innerText) {
+      let myStr = '';
+
+      console.log(element.innerText);
+
+      let innerText = element.innerText;
+      let counter;
+
+      for (let i = 0; i < innerText.length; i++) {
+        counter = 0;
+        for (let j = 0; j < vocals.length; j++) {
+          if (element.innerText[i] !== vocals[j]) {
+            counter++;
+
+            if (counter === 4) {
+              myStr += element.innerText[i];
+            }
+          }
+        }
+      }
+
+      element.innerText = myStr;
+    }
+  });
+};
+
+// deleteVowels();
