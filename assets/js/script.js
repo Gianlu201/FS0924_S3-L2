@@ -247,7 +247,24 @@ const hideAllImages = function () {
   Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
 */
 
-const changeColorWithRandom = function () {};
+const changeColorWithRandom = function () {
+  myH2Title.style.color = randomColor();
+};
+
+function randomColor() {
+  const myArray = [];
+  for (let i = 0; i < 3; i++) {
+    myArray[i] = Math.floor(Math.random() * 255);
+  }
+  console.log(myArray);
+  return `rgb(${myArray[0]}, ${myArray[1]}, ${myArray[2]})`;
+}
+
+const myH2Title = document.getElementById('changeMyColor');
+
+myH2Title.addEventListener('click', function (e) {
+  changeColorWithRandom();
+});
 
 /* EXTRA ESERCIZIO 16
   Crea una funzione che elimini le vocali da ogni elemento testuale della pagina (puoi aiutarti con i nuovi metodi degli array di ES6)
