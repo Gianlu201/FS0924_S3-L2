@@ -169,6 +169,8 @@ const intitolation = ['Immagine', 'Nome prodotto', 'Quantità', 'Prezzo'];
 
 const generateTable = function () {
   const myDiv = document.getElementById('tableArea');
+  const myTable = document.createElement('table');
+
   const newThead = document.createElement('thead');
   newThead.innerHTML = `
   <tr>
@@ -178,7 +180,7 @@ const generateTable = function () {
       <th>Prezzo</th>
     </tr>
   `;
-  myDiv.appendChild(newThead);
+  myTable.appendChild(newThead);
 
   const newTbody = document.createElement('tbody');
 
@@ -193,7 +195,8 @@ const generateTable = function () {
     `;
   });
 
-  myDiv.appendChild(newTbody);
+  myTable.appendChild(newTbody);
+  myDiv.appendChild(myTable);
 };
 
 generateTable();
@@ -202,7 +205,32 @@ generateTable();
   Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
 */
 
-const addRow = function () {};
+const newItem = [
+  {
+    img: 'assets/img/img6.png',
+    productName: 'matita',
+    quantity: 5,
+    price: 2,
+  },
+];
+
+const addRow = function () {
+  const myTbody = document.querySelector('#tableArea table tbody');
+  console.log(myTbody);
+
+  const newTr = document.createElement('tr');
+  newTr.innerHTML += `
+    <td><img src='${newItem.img}'></td>
+    <td>${newItem.productName}</td>
+    <td>${newItem.quantity}</td>
+    <td>${newItem.price}</td>
+  `;
+  console.log(newTr);
+
+  myTbody.appendChild(newTr);
+};
+
+addRow();
 
 /* ESERCIZIO 14
   Crea una funzione che nasconda le immagini della tabella quando eseguita
