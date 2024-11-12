@@ -99,7 +99,7 @@ paintItGreen();
 /* ESERCIZIO 9
   Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
 */
-
+// gestire quando le lettere nel titolo finiscono
 const makeItClickable = function () {
   if (title.innerText.length > 0) {
     title.innerText = title.innerText.slice(0, -1);
@@ -130,7 +130,73 @@ footer.addEventListener('click', function () {
   La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
 */
 
-const generateTable = function () {};
+// La tabella fa pena e deve essere corretta graficamente e anche il codice generalizzato!!
+
+const items = [
+  {
+    img: 'assets/img/img1.png',
+    productName: 'penna',
+    quantity: 3,
+    price: 10,
+  },
+  {
+    img: 'assets/img/img2.png',
+    productName: 'gomma',
+    quantity: 1,
+    price: 3,
+  },
+  {
+    img: 'assets/img/img3.png',
+    productName: 'forbice',
+    quantity: 1,
+    price: 5,
+  },
+  {
+    img: 'assets/img/img4.png',
+    productName: 'righello',
+    quantity: 2,
+    price: 20,
+  },
+  {
+    img: 'assets/img/img5.png',
+    productName: 'colla',
+    quantity: 2,
+    price: 30,
+  },
+];
+
+const intitolation = ['Immagine', 'Nome prodotto', 'Quantità', 'Prezzo'];
+
+const generateTable = function () {
+  const myDiv = document.getElementById('tableArea');
+  const newThead = document.createElement('thead');
+  newThead.innerHTML = `
+  <tr>
+      <th>Immagine</th>
+      <th>Nome prodotto</th>
+      <th>Quantità</th>
+      <th>Prezzo</th>
+    </tr>
+  `;
+  myDiv.appendChild(newThead);
+
+  const newTbody = document.createElement('tbody');
+
+  items.forEach((element) => {
+    newTbody.innerHTML += `
+    <tr>
+      <td><img src='${element.img}'></td>
+      <td>${element.productName}</td>
+      <td>${element.quantity}</td>
+      <td>${element.price}</td>
+    </tr>
+    `;
+  });
+
+  myDiv.appendChild(newTbody);
+};
+
+generateTable();
 
 /* ESERCIZIO 12
   Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
