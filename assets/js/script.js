@@ -216,7 +216,6 @@ const newItem = [
 
 const addRow = function () {
   const myTbody = document.querySelector('#tableArea table tbody');
-  console.log(myTbody);
 
   const newTr = document.createElement('tr');
   newTr.innerHTML += `
@@ -225,7 +224,6 @@ const addRow = function () {
     <td>${newItem.quantity}</td>
     <td>${newItem.price}</td>
   `;
-  console.log(newTr);
 
   myTbody.appendChild(newTr);
 };
@@ -236,7 +234,14 @@ addRow();
   Crea una funzione che nasconda le immagini della tabella quando eseguita
 */
 
-const hideAllImages = function () {};
+const hideAllImages = function () {
+  const imgList = document.querySelectorAll('#tableArea table img');
+  imgList.forEach((element) => {
+    element.classList.add('hidden');
+  });
+};
+
+// hideAllImages();
 
 /* EXTRA ESERCIZIO 15
   Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
