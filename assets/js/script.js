@@ -212,7 +212,7 @@ const newItem = {
   price: 2,
 };
 
-const addRow = function () {
+const addRow = function (img, productName, quantity, price) {
   const myTbody = document.querySelector('#tableArea table tbody');
 
   const newTr = document.createElement('tr');
@@ -226,7 +226,7 @@ const addRow = function () {
   myTbody.appendChild(newTr);
 };
 
-addRow();
+addRow(newItem.img, newItem.productName, newItem.quantity, newItem.price);
 
 /* ESERCIZIO 14
   Crea una funzione che nasconda le immagini della tabella quando eseguita
