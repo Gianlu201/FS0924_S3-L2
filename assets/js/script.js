@@ -2,31 +2,62 @@
   Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
 */
 
-const changeTitle = function () {};
+const title = document.querySelector('h1');
+
+const changeTitle = function () {
+  title.innerText = 'Titolo cambiato';
+};
+
+changeTitle();
 
 /* ESERCIZIO 2
   Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
 */
 
-const addClassToTitle = function () {};
+const addClassToTitle = function () {
+  title.classList = 'myHeading';
+};
+
+addClassToTitle();
 
 /* ESERCIZIO 3
   Scrivi una funzione per che cambi il testo dei p figli di un div
 */
 
-const changePcontent = function () {};
+const changePcontent = function () {
+  const pCollection = document.querySelectorAll('div p');
+  pCollection.forEach((element) => {
+    element.innerText = 'Il testo del paragrafo è stato modificato via JS';
+  });
+};
+
+changePcontent();
 
 /* ESERCIZIO 4
   Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
 */
 
-const changeUrls = function () {};
+const changeUrls = function () {
+  const aCollection = document.querySelectorAll('a:not(footer a)');
+  aCollection.forEach((element) => {
+    element.setAttribute('href', 'https://www.google.com');
+  });
+};
+
+changeUrls();
 
 /* ESERCIZIO 5
   Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
 */
 
-const addToTheSecond = function () {};
+const addToTheSecond = function () {
+  const secondUl = document.querySelector('ul:nth-of-type(2)');
+  const newLi = document.createElement('li');
+  newLi.innerText = 'Nuovo elemento della lista';
+  secondUl.appendChild(newLi);
+};
+
+addToTheSecond();
 
 /* ESERCIZIO 6
   Scrivi una funzione che aggiunga un secondo paragrafo al primo div
