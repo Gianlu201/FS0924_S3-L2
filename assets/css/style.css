@@ -22,3 +22,11 @@ footer {
 .myHeading {
   color: #ff00d6;
 }
+
+.bkg-green {
+  background-color: green;
+}
+
+.hidden {
+  display: none;
+}

@@ -51,7 +51,7 @@ changeUrls();
 */
 
 const addToTheSecond = function () {
-  const secondUl = document.querySelector('ul:nth-of-type(2)');
+  const secondUl = document.getElementById('secondList');
   const newLi = document.createElement('li');
   newLi.innerText = 'Nuovo elemento della lista';
   secondUl.appendChild(newLi);
@@ -63,31 +63,67 @@ addToTheSecond();
   Scrivi una funzione che aggiunga un secondo paragrafo al primo div
 */
 
-const addParagraph = function () {};
+const addParagraph = function () {
+  const myDiv = document.getElementById('addParagraph');
+  const newP = document.createElement('p');
+  newP.innerText = `Questo paragrafo è stato creato per l'esercizio 6`;
+  myDiv.appendChild(newP);
+};
+
+addParagraph();
 
 /* ESERCIZIO 7
   Scrivi una funzione che faccia scomparire la prima lista non ordinata
 */
 
-const hideFirstUl = function () {};
+const hideFirstUl = function () {
+  const firstUl = document.getElementById('firstList');
+  firstUl.classList.add('hidden');
+};
+
+hideFirstUl();
 
 /* ESERCIZIO 8 
   Scrivi una funzione che renda verde il background di ogni lista non ordinata
 */
 
-const paintItGreen = function () {};
+const paintItGreen = function () {
+  const myUlList = document.querySelectorAll('ul');
+  myUlList.forEach((element) => {
+    element.classList.add('bkg-green');
+  });
+};
+
+paintItGreen();
 
 /* ESERCIZIO 9
   Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
 */
 
-const makeItClickable = function () {};
+const makeItClickable = function () {
+  if (title.innerText.length > 0) {
+    title.innerText = title.innerText.slice(0, -1);
+  }
+};
+
+title.addEventListener('click', function (e) {
+  makeItClickable();
+});
 
 /* ESERCIZIO 10
   Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
 */
 
-const revealFooterLink = function () {};
+const revealFooterLink = function (aNode) {
+  alert(aNode.getAttribute('href'));
+};
+
+const footer = document.querySelector('footer');
+
+footer.addEventListener('click', function () {
+  const footerA = document.querySelector('footer a');
+  revealFooterLink(footerA);
+});
 
 /* ESERCIZIO 11
   Crea una funzione che crei una tabella nell'elemento con id "tableArea". 
