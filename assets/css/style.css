@@ -30,3 +30,16 @@ footer {
 .hidden {
   display: none;
 }
+
+#newTable {
+  border-collapse: collapse;
+}
+
+#newTable th,
+#newTable td {
+  border: 2px solid black;
+  width: 120px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+}

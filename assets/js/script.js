@@ -130,8 +130,6 @@ footer.addEventListener('click', function () {
   La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
 */
 
-// La tabella fa pena e deve essere corretta graficamente e anche il codice generalizzato!!
-
 const items = [
   {
     img: 'assets/img/img1.png',
@@ -168,36 +166,67 @@ const items = [
 const intitolation = ['Immagine', 'Nome prodotto', 'Quantità', 'Prezzo'];
 
 const generateTable = function () {
-  const myDiv = document.getElementById('tableArea');
+  const targetPlace = document.getElementById('tableArea');
   const myTable = document.createElement('table');
-
-  const newThead = document.createElement('thead');
-  newThead.innerHTML = `
-  <tr>
-      <th>Immagine</th>
-      <th>Nome prodotto</th>
-      <th>Quantità</th>
-      <th>Prezzo</th>
-    </tr>
-  `;
-  myTable.appendChild(newThead);
-
-  const newTbody = document.createElement('tbody');
-
-  items.forEach((element) => {
-    newTbody.innerHTML += `
-    <tr>
-      <td><img src='${element.img}'></td>
-      <td>${element.productName}</td>
-      <td>${element.quantity}</td>
-      <td>${element.price}</td>
-    </tr>
-    `;
-  });
-
-  myTable.appendChild(newTbody);
-  myDiv.appendChild(myTable);
+  myTable.setAttribute('id', 'newTable');
+  myTable.appendChild(generateThead());
+  myTable.appendChild(generateTbody());
+  targetPlace.appendChild(myTable);
 };
+
+function generateThead() {
+  const myThead = document.createElement('thead');
+  const myTr = document.createElement('tr');
+  for (let i = 0; i < intitolation.length; i++) {
+    const myTh = document.createElement('th');
+    myTh.innerHTML = intitolation[i];
+    myTr.appendChild(myTh);
+  }
+  myThead.appendChild(myTr);
+  return myThead;
+}
+
+function generateTbody() {
+  const myTbody = document.createElement('tbody');
+  for (let i = 0; i < items.length; i++) {
+    const myTr = document.createElement('tr');
+
+    const myTdImg = document.createElement('td');
+    myTdImg.classList.add('imgParent');
+    myTdImg.innerHTML = `<img src='${items[i].img}' />`;
+    myTr.appendChild(myTdImg);
+
+    const myTdProduct = document.createElement('td');
+    myTdProduct.innerHTML = items[i].productName;
+    myTr.appendChild(myTdProduct);
+
+    const myTdQuantity = document.createElement('td');
+    myTdQuantity.innerHTML = items[i].quantity;
+    myTr.appendChild(myTdQuantity);
+
+    const myTdPrice = document.createElement('td');
+    myTdPrice.innerHTML = `€${items[i].price}`;
+    myTr.appendChild(myTdPrice);
+
+    myTbody.appendChild(myTr);
+  }
+  return myTbody;
+}
+
+//   const newTbody = document.createElement('tbody');
+
+//   items.forEach((element) => {
+//     newTbody.innerHTML += `
+//     <tr>
+//       <td><img src='${element.img}'></td>
+//       <td>${element.productName}</td>
+//       <td>${element.quantity}</td>
+//       <td>${element.price}</td>
+//     </tr>
+//     `;
+//   });
+
+//   myTable.appendChild(newTbody);
 
 generateTable();
 
@@ -212,28 +241,28 @@ const newItem = {
   price: 2,
 };
 
-const addRow = function (img, productName, quantity, price) {
-  const myTbody = document.querySelector('#tableArea table tbody');
+const addRow = function (myObj) {
+  const myTbody = document.querySelector('#newTable tbody');
 
   const newTr = document.createElement('tr');
-  newTr.innerHTML += `
-    <td><img src='${newItem.img}'></td>
-    <td>${newItem.productName}</td>
-    <td>${newItem.quantity}</td>
-    <td>${newItem.price}</td>
+  newTr.innerHTML = `
+    <td class='imgParent'><img src='${myObj.img}' /></td>
+    <td>${myObj.productName}</td>
+    <td>${myObj.quantity}</td>
+    <td>€${myObj.price}</td>
   `;
 
   myTbody.appendChild(newTr);
 };
 
-addRow(newItem.img, newItem.productName, newItem.quantity, newItem.price);
+addRow(newItem);
 
 /* ESERCIZIO 14
   Crea una funzione che nasconda le immagini della tabella quando eseguita
 */
 
 const hideAllImages = function () {
-  const imgList = document.querySelectorAll('#tableArea table img');
+  const imgList = document.querySelectorAll('#newTable img');
   imgList.forEach((element) => {
     element.classList.add('hidden');
   });
@@ -268,36 +297,52 @@ myH2Title.addEventListener('click', function (e) {
 */
 
 const deleteVowels = function () {
-  const vocals = ['a', 'e', 'i', 'o', 'u'];
-  const allElements = document.querySelectorAll('body *');
+  const allElements = [
+    'h1',
+    'h2',
+    'h3',
+    'p',
+    'a',
+    'li',
+    'th',
+    'td:not(.imgParent)',
+  ];
 
-  console.log(allElements);
+  for (let i = 0; i < allElements.length; i++) {
+    const inercettedElements = document.querySelectorAll(allElements[i]);
 
-  allElements.forEach((element) => {
-    if (element.innerText) {
+    inercettedElements.forEach((element) => {
+      const myText = element.innerText;
       let myStr = '';
 
-      console.log(element.innerText);
-
-      let innerText = element.innerText;
-      let counter;
-
-      for (let i = 0; i < innerText.length; i++) {
-        counter = 0;
-        for (let j = 0; j < vocals.length; j++) {
-          if (element.innerText[i] !== vocals[j]) {
-            counter++;
-
-            if (counter === 4) {
-              myStr += element.innerText[i];
-            }
-          }
+      // console.log(myText);
+      for (let j = 0; j < myText.length; j++) {
+        // console.log(myText[j]);
+        switch (myText[j].toLowerCase()) {
+          case 'a':
+            // console.log('ECCOMI');
+            break;
+          case 'e':
+            // console.log('ECCOMI');
+            break;
+          case 'i':
+            // console.log('ECCOMI');
+            break;
+          case 'o':
+            // console.log('ECCOMI');
+            break;
+          case 'u':
+            // console.log('ECCOMI');
+            break;
+          default:
+            myStr += myText[j];
         }
       }
+      // console.log(myStr);
 
       element.innerText = myStr;
-    }
-  });
+    });
+  }
 };
 
 // deleteVowels();
